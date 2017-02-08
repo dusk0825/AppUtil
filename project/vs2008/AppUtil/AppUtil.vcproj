@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../../public/include"
+				AdditionalIncludeDirectories="../../../public/include;../../../public/include/mq"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE;ZLIB_WINAPI;_WINSOCKAPI_"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -61,7 +61,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="zlibwapi.lib DTK.lib"
+				AdditionalDependencies="zlibwapi.lib DTK.lib activemq-cppd.lib"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="../../../public/lib/vs2008_debug"
 				GenerateDebugInformation="true"
@@ -117,7 +117,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="../../../public/include"
+				AdditionalIncludeDirectories="../../../public/include;../../../public/include/mq"
 				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE;ZLIB_WINAPI;_WINSOCKAPI_"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -136,7 +136,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="DTK.lib zlibwapi.lib"
+				AdditionalDependencies="DTK.lib zlibwapi.lib activemq-cpp.lib"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="../../../public/lib/vs2008_release"
 				GenerateDebugInformation="true"
@@ -232,6 +232,18 @@
 			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav"
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
+		</Filter>
+		<Filter
+			Name="ActiveMq"
+			>
+			<File
+				RelativePath="..\..\..\src\AMqWraper.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\src\AMqWraper.h"
+				>
+			</File>
 		</Filter>
 	</Files>
 	<Globals>
