@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <schema targetNamespace="urn:testService"
+  xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+  xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:test="urn:testService"
+  xmlns="http://www.w3.org/2001/XMLSchema"
+  elementFormDefault="unqualified"
+  attributeFormDefault="unqualified">
+  <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+  <complexType name="ResultInfo"><!-- test__ResultInfo -->
+
+   <sequence>
+     <element name="resultCode" type="xsd:int" minOccurs="1" maxOccurs="1"/><!-- test__ResultInfo::resultCode -->
+     <element name="resultString" type="xsd:string" minOccurs="1" maxOccurs="1"/><!-- test__ResultInfo::resultString -->
+   </sequence>
+  </complexType>
+  <complexType name="ConfigReq"><!-- test__ConfigReq -->
+
+   <sequence>
+     <element name="configXml" type="xsd:string" minOccurs="1" maxOccurs="1"/><!-- test__ConfigReq::configXml -->
+   </sequence>
+  </complexType>
+  <!-- operation request element -->
+  <element name="RemoteConfig">
+   <complexType>
+    <sequence>
+     <element name="req" type="test:ConfigReq" minOccurs="1" maxOccurs="1"/><!-- test__RemoteConfig::req -->
+    </sequence>
+   </complexType>
+  </element>
+  <!-- operation response element -->
+  <element name="ConfigRsp">
+   <complexType>
+    <sequence>
+     <element name="resultInfo" type="test:ResultInfo" minOccurs="1" maxOccurs="1"/><!-- test__ConfigRsp::resultInfo -->
+    </sequence>
+   </complexType>
+  </element>
+ </schema>
+

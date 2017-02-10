@@ -1,6 +1,8 @@
 
 #include <stdio.h>
 #include "AMqWraper.h"
+#include "WsService.h"
+#include "WsClient.h"
 
 void CALLBACK OnMessage(const char* pMsg, unsigned uMsgLen,void* pUser)
 {
@@ -8,7 +10,7 @@ void CALLBACK OnMessage(const char* pMsg, unsigned uMsgLen,void* pUser)
     printf("recv = %s\n", strMsg.c_str());
 }
 
-int main(int argc, char* argv[])
+void TestMq()
 {
     MqMgr mqMgr;
     mqMgr.Init();
@@ -27,5 +29,33 @@ int main(int argc, char* argv[])
     getchar();
 
     mqMgr.Fini();
+}
+
+void TestWsServ()
+{
+    CWsService wsSvr;
+    wsSvr.Start(9999);
+
+    getchar();
+
+    wsSvr.Stop();
+}
+
+void TestWsClient()
+{
+    CWsClient wsClient;
+    wsClient.SetWsAddr("127.0.0.1", 9999);
+    wsClient.RemoteConfig();
+}
+
+int main(int argc, char* argv[])
+{
+    DTK_Init();
+
+    //TestMq();
+    //TestWsServ();
+    //TestWsClient();
+
+    DTK_Fini();
     return 0;
 }

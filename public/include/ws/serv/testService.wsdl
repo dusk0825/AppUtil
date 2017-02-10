@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="testService"
+ targetNamespace="urn:testService"
+ xmlns:tns="urn:testService"
+ xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+ xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+ xmlns:test="urn:testService"
+ xmlns:SOAP="http://schemas.xmlsoap.org/wsdl/soap/"
+ xmlns:MIME="http://schemas.xmlsoap.org/wsdl/mime/"
+ xmlns:DIME="http://schemas.xmlsoap.org/ws/2002/04/dime/wsdl/"
+ xmlns:WSDL="http://schemas.xmlsoap.org/wsdl/"
+ xmlns="http://schemas.xmlsoap.org/wsdl/">
+
+<types>
+
+ <schema targetNamespace="urn:testService"
+  xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+  xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:test="urn:testService"
+  xmlns="http://www.w3.org/2001/XMLSchema"
+  elementFormDefault="unqualified"
+  attributeFormDefault="unqualified">
+  <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+  <complexType name="ResultInfo"><!-- test__ResultInfo -->
+
+   <sequence>
+     <element name="resultCode" type="xsd:int" minOccurs="1" maxOccurs="1"/><!-- test__ResultInfo::resultCode -->
+     <element name="resultString" type="xsd:string" minOccurs="1" maxOccurs="1"/><!-- test__ResultInfo::resultString -->
+   </sequence>
+  </complexType>
+  <complexType name="ConfigReq"><!-- test__ConfigReq -->
+
+   <sequence>
+     <element name="configXml" type="xsd:string" minOccurs="1" maxOccurs="1"/><!-- test__ConfigReq::configXml -->
+   </sequence>
+  </complexType>
+  <!-- operation request element -->
+  <element name="RemoteConfig">
+   <complexType>
+    <sequence>
+     <element name="req" type="test:ConfigReq" minOccurs="1" maxOccurs="1"/><!-- test__RemoteConfig::req -->
+    </sequence>
+   </complexType>
+  </element>
+  <!-- operation response element -->
+  <element name="ConfigRsp">
+   <complexType>
+    <sequence>
+     <element name="resultInfo" type="test:ResultInfo" minOccurs="1" maxOccurs="1"/><!-- test__ConfigRsp::resultInfo -->
+    </sequence>
+   </complexType>
+  </element>
+ </schema>
+
+</types>
+
+<message name="RemoteConfig">
+ <part name="parameters" element="test:RemoteConfig"/><!-- test__RemoteConfig::test__RemoteConfig -->
+</message>
+
+<message name="ConfigRsp">
+ <part name="parameters" element="test:ConfigRsp"/><!-- test__RemoteConfig::rsp -->
+</message>
+
+<portType name="testServicePortType">
+ <operation name="RemoteConfig">
+  <documentation>Service definition of function test__RemoteConfig</documentation>
+  <input message="tns:RemoteConfig"/>
+  <output message="tns:ConfigRsp"/>
+ </operation>
+</portType>
+
+<binding name="testService" type="tns:testServicePortType">
+ <SOAP:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+ <operation name="RemoteConfig">
+  <SOAP:operation soapAction=""/>
+  <input>
+     <SOAP:body parts="parameters" use="literal"/>
+  </input>
+  <output>
+     <SOAP:body parts="parameters" use="literal"/>
+  </output>
+ </operation>
+</binding>
+
+<service name="testService">
+ <documentation>gSOAP 2.8.8 generated service definition</documentation>
+ <port name="testService" binding="tns:testService">
+  <SOAP:address location="http://localhost:6651/ws/testService"/>
+ </port>
+</service>
+
+</definitions>
